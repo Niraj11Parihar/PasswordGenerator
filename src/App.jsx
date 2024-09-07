@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -8,6 +8,20 @@ function App() {
   const [numbers, setNumbers] = useState(false);
   const [char, setChar] = useState(false);
   const [password, setPassword] = useState("");
+  const [copy, setCopy] = useState(false);
+  const textArea = useRef(null);
+
+  function copyToClipboard(e) {
+    textArea.current.select();
+    navigator.clipboard.writeText(textArea.current.value)
+    .then(()=>{
+      console.log("Content Copied")
+    }).catch((error)=>{
+      console.error("Error in copying text: ", error)
+    })
+
+    setCopy("copied!d")
+    }
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
@@ -30,16 +44,20 @@ function App() {
   return (
     <>
       <section className="h-screen flex justify-center">
-        <center className="mt-72 w-1/2">
+        <center className="m-auto p-10 rounded-2xl w-1/2 bg-purple-100">
           <h1 className="text-4xl mb-4 text-neutral-600 font-bold">Password Generator</h1>
           <div className="container">
-            <div className="border p-2 rounded-md ">
-              <input
-                type="text"
-                value={password}
-                className="w-full p-2 rounded-s bg-slate-300"
-                placeholder="password"
-              ></input>
+            <div className="border  p-2 rounded-md ">
+              <div className="w-full flex items-center">
+                  <input
+                    type="text"
+                    value={password}
+                    ref={textArea}
+                    className=" p-2 w-4/5  rounded-s bg-slate-300"
+                    placeholder="password"
+                  ></input>
+                  <button className="w-1/5 bg-indigo-300 text-white p-2" onClick={copyToClipboard}>Copy</button>
+              </div>
 
               <div className="flex  justify-evenly" >
                 <div className="flex items-center justify-start">
