@@ -39,8 +39,8 @@ A sleek, responsive, and customizable password generator built with **React** an
 - **JavaScript**  
 
 ## Screenshots 📸
-Add screenshots of the app showcasing its design and functionality.  
-*(Replace this section with actual images once you have them.)*
+![Screenshot 2024-11-23 124915](https://github.com/user-attachments/assets/31b70c0b-44db-427a-a4e9-cbd11cb73081)
+
 
 ## Contributing 🤝
 Contributions are welcome! Feel free to open issues or submit pull requests.
